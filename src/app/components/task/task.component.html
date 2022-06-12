@@ -1,0 +1,70 @@
+<div class="container">
+    <div id="editing">
+        <button type="button" *ngIf="task.state[0] == 'unstart' && editing == false" title="Iniciar Tarea" (click)="initTask()"><i class="fa fa-play"></i></button>
+        <button type="button" *ngIf="task.state[0] == 'current' && editing == false" title="Completar Tarea" (click)="completeTask()"><i class="fa fa-check"></i></button>
+        <button type="submit" *ngIf="editing == true" title="Guardar Cambios" (click)="saveEdit()"><i class="fa fa-save"></i></button>
+        <button type="button"><i class="fa fa-trash" title="Eliminar Tarea" (click)="deleteTask()"></i></button>
+        <button type="button" (click)="setEditing()" title="Editar"><i class="fa fa-edit" ></i></button>
+    </div>
+    <div class="alert {{message.type}}" *ngIf="message.content.length > 0">
+        <strong>{{message.content}} </strong> <div class="fa fa-sync spin" *ngIf="message.content != 'Tarea iniciada' && message.content != 'Tarea completada'"></div>
+    </div>
+    <div class="contain-info" *ngIf="editing == false && task != undefined">
+        <div class="titulation">
+            <img src="assets/{{task.category[0]}}.svg" alt="icon" id="taskicon">
+            <h2 id="tasktitle">
+                <span>{{task.title}}</span>
+            </h2>
+        </div>
+        <div class="contain-description">
+            <div *ngFor="let p of task.description.split('\n')" class="des-paragraph">
+                <div class="before {{task.category[0]}}"></div>
+                <p>{{p}}</p>
+            </div>
+        </div>
+        <hr style="margin: 32px auto; width: 60%">
+        <strong>Objetivos</strong>
+        <ul id="objectives">
+            <li *ngFor="let obj of task.objectives">
+                {{obj}}
+            </li>
+        </ul>
+        <ul id="footer">
+            <li>Categoría: {{task.category[1]}}</li>
+            <li>Estado: {{task.state[1]}}</li>
+            <li>Creada en: {{task.createdAt}}</li>
+            <li>Finaliza en: {{task.endAt}}</li>
+        </ul>
+    </div>
+    <div *ngIf="editing == true && task != undefined && message.show == false" id="edt-opt">
+        <form (submit)="saveEdit()">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" name="title" [(ngModel)]="task.title">
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea name="description" [(ngModel)]="task.description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="objectives">Objetivos</label>
+                <textarea name="objectives" [(ngModel)]="task.objectives"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">categoría</label>
+                <select name="category" [(ngModel)]="task.category[0]">
+                    <option value="normal">Normal</option>
+                    <option value="escolar">Escolar</option>
+                    <option value="unique">Única</option>
+                    <option value="special">Especial</option>
+                    <option value="important">Importante</option>
+                    <option value="urgent">Urgente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha"></label>
+                <input type="date" name="fecha" [(ngModel)]="task.endAt">
+            </div>
+        </form>
+    </div>
+</div>

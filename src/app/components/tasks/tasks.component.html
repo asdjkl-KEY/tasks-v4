@@ -1,0 +1,16 @@
+<div class="container">
+    <h2 *ngIf="allTasks.length <= 0">No tienes ninguna tarea</h2>
+    <div class="tasks-grid">
+        <button type="button" class="btn-task" *ngFor="let task of allTasks" (click)="click(task.id)" routerLink="/task">
+            <article>
+                <img *ngIf="task.state[0] == 'ended'" src="assets/check.svg" alt="check" class="task-mark" title="tarea finalizada">
+                <img *ngIf="task.state[0] == 'noended'" src="assets/error.svg" alt="error" class="task-mark" title="tarea no realizada">
+                <img *ngIf="task.state[0] == 'current'" src="assets/arrow-repeat.svg" alt="repeat" class="task-mark" title="tarea en curso">
+                <img src="assets/{{task.category[0]}}.svg" alt="{{task.name}}" class="task-icon">
+                <strong class="task-title">{{task.title}}</strong>
+                <span class="task-description">{{task.shortDescription}}</span>
+            </article>
+        </button>
+    </div>
+</div>
+

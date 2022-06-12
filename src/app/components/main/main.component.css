@@ -1,0 +1,20 @@
+.paragraph{
+    text-align: left;
+    color: #cdcdcd;
+    margin-top: 4px;
+}
+ul {
+    color: #cdcdcd;
+}
+h1, h2, span {
+    color: #fafafa;
+}
+.paragraph, ul {
+    padding: 0 20px;
+}
+h1, h2, a {
+    padding: 0 12px;
+}
+a{
+    margin-bottom: 32px;
+}

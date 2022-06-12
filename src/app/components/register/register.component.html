@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Completa los campos para Registrarte</h1>
+    <div class="alert {{message.type}}" *ngIf="message.content.length > 0">
+        <strong>{{message.content}}</strong>
+    </div>
+    <form (submit)="register()" >
+        <div class="form-group">
+            <label for="email" >Email</label>
+            <input type="email" [(ngModel)]="user.email" name="email" required placeholder="Example@example.com">
+        </div>
+        <div class="form-group">
+            <label for="username" >Nombre de usuario</label>
+            <input type="text" [(ngModel)]="user.username" name="username" required placeholder="Usuario532">
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" [(ngModel)]="user.password" name="password" required placeholder="SecretPassword">
+        </div>
+        <small>Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></small>
+        <div class="form-group">
+            <button type="submit" class="submit">Registrarse</button>
+        </div>
+    </form>
+</div>

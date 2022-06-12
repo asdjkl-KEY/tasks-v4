@@ -1,0 +1,21 @@
+<header>
+    <div id="toggle" (click)="toggle()">
+        <div class="bar bar1 {{bars}}"></div>
+        <div class="bar bar2 {{bars}}"></div>
+        <div class=" bar bar3 {{bars}}"></div>
+    </div>
+    <nav *ngIf="authenticated == false">
+        <li *ngFor="let option of options" class="nav-item {{option.index}} {{bars}}">
+            <button type="button" title="{{option.label}}">
+                <a routerLink="/{{option.link}}" class="{{option.icon}}"></a>
+            </button>
+        </li>
+    </nav>
+    <nav *ngIf="authenticated == true">
+        <li *ngFor="let option of options2" class="nav-item {{option.index}} {{bars}}">
+            <button type="button" title="{{option.label}}">
+                <a routerLink="/{{option.link}}" class="{{option.icon}}"></a>
+            </button>
+        </li>
+    </nav>
+</header>

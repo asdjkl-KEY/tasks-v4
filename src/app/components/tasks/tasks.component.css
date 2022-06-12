@@ -1,0 +1,64 @@
+.container {
+    padding: 50px 100px;
+}
+.tasks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 24px;
+}
+.btn-task {
+    background: #464646;
+    border: none;
+    border-radius: 4px;
+    height: 100px;
+}
+.btn-task > article {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "icon title"
+                         "icon description";
+    position: relative;
+}
+.task-icon {
+    grid-area: icon;
+    width: 80px;
+    height: 80px;
+    margin-top: 0px;
+    margin-left: 15px;
+}
+.task-title {
+    grid-area: title;
+    margin-top: 4px;
+    color: #fafafa;
+    font-size: 20px;
+}
+.task-description {
+    grid-area: description;
+    color: #cdcdcd;
+    margin-top: 8px;
+}
+.task-mark {
+    position: absolute;
+    right: 8px;
+    top: 4px;
+}
+
+@media screen and (max-width: 992px){
+    .container {
+        padding: 15px 20px;
+    }
+    .tasks-grid {
+        grid-template-columns: 1fr;
+    }
+    .btn-task {
+        height: 115px;
+    }
+}
+h2 {
+    color: #fafafa;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}

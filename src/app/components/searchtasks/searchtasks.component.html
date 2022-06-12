@@ -1,0 +1,47 @@
+<div class="container">
+    <div *ngIf="message.content.length > 0" class="alert {{message.type}}">
+        <strong>{{message.content}}</strong>
+    </div>
+    <div class="search-bar">
+        <form (submit)="search()">
+            <div class="form-group">
+                <label for="state">Estado:</label>
+                <select name="state" [(ngModel)]="options.state">
+                    <option value="unstart">Tarea no iniciada</option>
+                    <option value="current">Tarea en curso</option>
+                    <option value="ended">Tarea completada</option>
+                    <option value="noended">Tarea no realizada</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Categoría:</label>
+                <select name="category" [(ngModel)]="options.category">
+                    <option value="normal">Normal</option>
+                    <option value="escolar">Escolar</option>
+                    <option value="unique">Única</option>
+                    <option value="special">Especial</option>
+                    <option value="important">Importante</option>
+                    <option value="urgent">Urgente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="palabras clave | título" name="paragraph" [(ngModel)]="options.paragraph">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit fa fa-search"></button>
+            </div>
+        </form>
+    </div>
+    <h2 *ngIf="tasks.length <= 0 && searching == true">Ningún resultado :c</h2>
+    <div class="tasks-grid" *ngIf="searching == true && tasks.length > 0">
+        <button type="button" class="btn-task" *ngFor="let task of tasks" (click)="click(task.id)">
+            <article>
+                <img *ngIf="task.state[0] == 'ended'" src="assets/check.svg" alt="check" class="task-mark">
+                <img *ngIf="task.state[0] == 'noended'" src="assets/error.svg" alt="error" class="task-mark">
+                <img src="assets/{{task.category[0]}}.svg" alt="{{task.name}}" class="task-icon">
+                <strong class="task-title">{{task.title}}</strong>
+                <span class="task-description">{{task.shortDescription}}</span>
+            </article>
+        </button>
+    </div>
+</div>

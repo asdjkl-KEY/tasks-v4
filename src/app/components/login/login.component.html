@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>Completa los campos para Iniciar Sesión</h1>
+    <div class="alert {{message.type}}" *ngIf="message.content.length > 0">
+        <strong>{{message.content}}</strong>
+    </div>
+    <form (submit)="logIn()">
+        <div class="form-group">
+            <label for="namemail" >Nombre de usuario</label>
+            <input type="text" [(ngModel)]="user.username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" [(ngModel)]="user.password" name="password" required>
+        </div>
+        <small>No tienes una cuenta? <a routerLink="/register">Regístrate</a></small>
+        <div class="form-group">
+            <button type="submit" class="submit">Iniciar Sesión</button>
+        </div>
+    </form>
+</div>
