@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SwPush } from '@angular/service-worker';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -45,4 +47,26 @@ import { LogoutComponent } from './components/logout/logout.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  public readonly VAPID_PUBLIC_KEY = 'BGCDWCnFMwEehzBkdT8EtglUpp8OryFtpJdAywWzModH58QZWn-FJ0Quh5_KzuuuWYzl6AReuFtE4BBlr-63aXI'
+  constructor(private push: SwPush, private auth: AuthService) {
+    if(this.auth.isAuthenticated()) {
+      this.suscribeToNotifications();
+    }
+  }
+  suscribeToNotifications(): any {
+    this.push.requestSubscription({
+      serverPublicKey: this.VAPID_PUBLIC_KEY
+    })
+    .then(sub => {
+      const token = JSON.parse(JSON.stringify(sub));
+      console.log("********** OJO **********", token);
+      this.auth.saveToken(token).subscribe(res => {
+        console.log(res);
+      }, err => {
+        console.log(err);
+      })
+    }
+    )
+  }
+ }

@@ -65,7 +65,7 @@
 #editing {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     margin: 16px 12px;
     align-items: flex-start;
     position: fixed;

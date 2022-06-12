@@ -68,6 +68,11 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
   }
-
+  saveToken(token: any) {
+    return this.http.post<any>(this.API+'suscribetonotifications', {
+      token: token,
+      userToken: this.getToken()
+    })
+}
 
 }
