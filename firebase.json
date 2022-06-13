@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "jesstasks-v4",
+    "public": "dist/tasks4",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
